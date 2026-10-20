@@ -63,7 +63,7 @@ export default function Registration() {
   return (
     <section className="section section-primary" id="dang-ky">
       <div className="container reg">
-        <div className="reg-info">
+        <div className="reg-info" data-reveal="left">
           <h2>Đăng ký tuyển sinh</h2>
           <p>Để lại thông tin, nhà trường sẽ liên hệ tư vấn cho bạn. Bạn cũng có thể gọi hotline hoặc nhắn Zalo để được hỗ trợ nhanh nhất.</p>
           <ul className="contact-list">
@@ -72,7 +72,7 @@ export default function Registration() {
             <li><b>Website:</b> <a href={SCHOOL.websiteHref} target="_blank" rel="noopener noreferrer">{SCHOOL.website}</a></li>
           </ul>
         </div>
-        <form className="reg-form" onSubmit={submit} noValidate>
+        <form className="reg-form" data-reveal="right" onSubmit={submit} noValidate>
           <div className="field">
             <label htmlFor="f-name">Họ và tên *</label>
             <input id="f-name" name="name" type="text" autoComplete="name" value={values.name} onChange={update} className={errors.name ? 'invalid' : ''} />

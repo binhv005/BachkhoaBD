@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import Preloader from './Preloader.jsx';
 import ScrollManager from './ScrollManager.jsx';
+import RevealManager from './RevealManager.jsx';
+import ScrollEffects from './ScrollEffects.jsx';
 import Header, { TopBar } from './Header.jsx';
 import { Contact, FloatButtons, Footer } from './Footer.jsx';
 
@@ -10,6 +12,8 @@ export default function Layout() {
     <>
       <Preloader />
       <ScrollManager />
+      <RevealManager />
+      <ScrollEffects />
       <TopBar />
       <Header />
       <main id="trang-chu">

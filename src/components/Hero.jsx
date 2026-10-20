@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg" role="img" aria-label="Học sinh Trường Trung cấp Bách Khoa Bình Dương" />
-      <div className="container hero-inner">
+      <div className="container hero-inner" data-stagger="up">
         <p className="hero-eyebrow">BDP • Binh Duong Polytechnic</p>
         <h1>HỌC NGHỀ – CÓ VIỆC LÀM – VỮNG TƯƠNG LAI</h1>
         <p className="hero-sub">
@@ -19,11 +19,11 @@ export function Hero() {
           <a className="btn btn-outline" href="#dang-ky">Đăng ký tuyển sinh</a>
         </div>
       </div>
-      <div className="container stats" role="list">
+      <div className="container stats" role="list" data-stagger="zoom">
         {STATS.map((s) => (
           <div className="stat" role="listitem" key={s.label}>
             <Icon name={s.icon} />
-            <b aria-label={s.value}><CountUp value={s.value} /></b>
+            <b aria-label={s.value}>{s.noCount ? s.value : <CountUp value={s.value} />}</b>
             <span>{s.label}</span>
           </div>
         ))}
@@ -35,7 +35,7 @@ export function Hero() {
 export function BannerSlider() {
   return (
     <section className="banner-section" aria-label="Thông tin tuyển sinh nổi bật">
-      <div className="container">
+      <div className="container" data-reveal="zoom">
         <Slider className="banner-slider" autoplay={5000} dots label="Thông tin tuyển sinh nổi bật">
           {BANNERS.map((b, i) => (
             <figure className="slide" key={b.src}>

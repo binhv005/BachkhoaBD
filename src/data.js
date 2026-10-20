@@ -34,7 +34,7 @@ export const STATS = [
   { icon: 'book', value: '12', label: 'ngành đào tạo' },
   { icon: 'cap', value: '100%', label: 'hỗ trợ học phí học nghề' },
   { icon: 'bag', value: '100%', label: 'cam kết có việc làm' },
-  { icon: 'bank', value: '10-11-12', label: 'học văn hóa & liên thông CĐ, ĐH' },
+  { icon: 'bank', value: '10-11-12', noCount: true, label: 'học văn hóa & liên thông CĐ, ĐH' },
 ];
 
 export const BANNERS = [

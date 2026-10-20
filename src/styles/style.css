@@ -77,8 +77,8 @@ h1, h2, h3, h4, p { margin: 0; }
 .btn.small { min-height: 38px; padding: 0 16px; font-size: 13px; }
 
 /* Hero */
-.hero { position: relative; padding-top: 58px; padding-bottom: 6px; }
-.hero-bg { position: absolute; inset: 0 0 90px 0; background: url('/img/p18.jpg') center 40% / cover no-repeat; }
+.hero { position: relative; padding-top: 58px; padding-bottom: 6px; overflow: hidden; }
+.hero-bg { position: absolute; inset: -80px 0 90px 0; transform: translateY(var(--parallax, 0px)); will-change: transform; background: url('/img/p18.jpg') center 40% / cover no-repeat; }
 .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .88) 38%, rgba(255, 255, 255, .25) 70%, rgba(11, 79, 154, .15) 100%); }
 .hero-inner { position: relative; padding-top: 18px; padding-bottom: 70px; max-width: var(--container); }
 .hero-inner > * { max-width: 720px; }
@@ -457,3 +457,42 @@ a.program-head:hover { background: var(--primary-dark); color: #fff; }
 /* ===== Không để dòng cuối chỉ còn một chữ ===== */
 body { text-wrap: pretty; }
 h1, h2, h3, h4, figcaption, .partner-name, .brand-text strong, .footer-name, .program-head, .benefit h4, .dept-list a, .btn, .chip { text-wrap: balance; }
+
+/* ===== Hiệu ứng khi lướt trang =====
+   Ẩn phần tử chờ hiện chỉ khi JS đã sẵn sàng (class reveal-js do RevealManager thêm); không JS / giảm chuyển động thì hiện bình thường.
+   Dùng animation (không dùng transition) và các thuộc tính translate/scale riêng để không đè hiệu ứng hover của thẻ. */
+.reveal-js [data-reveal]:not(.in) { opacity: 0; }
+.reveal-js [data-reveal].in { animation: rv-up .75s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms) backwards; }
+.reveal-js [data-reveal="down"].in { animation-name: rv-down; }
+.reveal-js [data-reveal="left"].in { animation-name: rv-left; }
+.reveal-js [data-reveal="right"].in { animation-name: rv-right; }
+.reveal-js [data-reveal="zoom"].in { animation-name: rv-zoom; }
+.reveal-js [data-reveal="pop"].in { animation-name: rv-pop; animation-timing-function: cubic-bezier(.34, 1.4, .5, 1); }
+.reveal-js [data-reveal="fade"].in { animation-name: rv-fade; }
+@keyframes rv-up { from { opacity: 0; translate: 0 38px; } }
+@keyframes rv-down { from { opacity: 0; translate: 0 -24px; } }
+@keyframes rv-left { from { opacity: 0; translate: -56px 0; } }
+@keyframes rv-right { from { opacity: 0; translate: 56px 0; } }
+@keyframes rv-zoom { from { opacity: 0; scale: .88; } }
+@keyframes rv-pop { from { opacity: 0; scale: .82; translate: 0 26px; rotate: -2deg; } }
+@keyframes rv-fade { from { opacity: 0; } }
+
+/* Tiêu đề mục: gạch chân vẽ ra khi hiện */
+.section-title:not(.section-title-bar) { position: relative; padding-bottom: 12px; }
+.section-title:not(.section-title-bar)::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 64px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--primary)); translate: -50% 0; transform-origin: center; }
+.section-title.left:not(.section-title-bar)::after { left: 0; translate: 0 0; transform-origin: left; }
+.reveal-js .section-title:not(.section-title-bar):not(.in)::after { scale: 0 1; }
+.reveal-js .section-title:not(.section-title-bar).in::after { animation: rv-line .8s .25s cubic-bezier(.2, .7, .2, 1) backwards; }
+@keyframes rv-line { from { scale: 0 1; } }
+
+/* Thẻ nổi lên khi rê chuột */
+.program, .benefit, .stat { transition: transform .25s ease, box-shadow .25s ease; }
+.program:hover, .benefit:hover, .stat:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(11, 79, 154, .22); }
+
+/* Thanh tiến độ cuộn */
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; background: linear-gradient(90deg, var(--accent), var(--primary)); transform-origin: left; transform: scaleX(var(--scroll, 0)); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg { transform: none; }
+  .scroll-progress { display: none; }
+  .program:hover, .benefit:hover, .stat:hover { transform: none; }
+}

@@ -6,7 +6,7 @@ import { SCHOOL } from '../data.js';
 export function Contact() {
   return (
     <section className="contact" id="lien-he">
-      <div className="container contact-grid">
+      <div className="container contact-grid" data-stagger="up">
         <div>
           <h3>THÔNG TIN LIÊN HỆ</h3>
           <ul>
@@ -49,7 +49,7 @@ export function Contact() {
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer-inner">
+      <div className="container footer-inner" data-reveal="fade">
         <img src="/img/logo.png" alt="Logo BDP" width="120" height="120" loading="lazy" />
         <div>
           <p className="footer-name">{SCHOOL.name}</p>

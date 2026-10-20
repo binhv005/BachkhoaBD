@@ -8,7 +8,7 @@ import {
 
 function SectionTitle({ children, left }) {
   return (
-    <h2 className={`section-title${left ? ' left' : ''}`}>
+    <h2 className={`section-title${left ? ' left' : ''}`} data-reveal="down">
       <span className="title-ico" aria-hidden="true" />{children}
     </h2>
   );
@@ -20,18 +20,18 @@ export function Admission() {
       <div className="container">
         <SectionTitle>Thông tin tuyển sinh</SectionTitle>
         <div className="admission">
-          <div className="admission-img">
+          <div className="admission-img" data-reveal="left">
             <img src="/img/p42.jpg" alt="Tờ rơi tuyển sinh lớp 10 kết hợp học Trung cấp chính quy tại Dĩ An" loading="lazy" />
             <span className="admission-tag">HỌC VĂN HÓA &amp; HỌC NGHỀ</span>
           </div>
-          <div className="admission-body">
+          <div className="admission-body" data-reveal="right">
             <p className="kicker">BDP · TUYỂN SINH LỚP 10</p>
             <h3>HỌC LỚP 10<br />KẾT HỢP TRUNG CẤP CHÍNH QUY</h3>
             <p className="lead">
               Học sinh vừa hoàn thành chương trình phổ thông, vừa được đào tạo nghề tại Dĩ An; ra trường có bằng THPT và
               bằng Trung cấp chính quy.
             </p>
-            <div className="benefits">
+            <div className="benefits" data-stagger="up">
               {BENEFITS.map((b) => (
                 <article className="benefit" key={b.title}>
                   <Icon name={b.icon} />
@@ -52,18 +52,18 @@ export function About() {
     <section className="section section-tint" id="gioi-thieu">
       <div className="container">
         <SectionTitle>Giới thiệu nhà trường</SectionTitle>
-        <p className="section-desc">
+        <p className="section-desc" data-reveal="up">
           Trường Trung cấp Bách Khoa Bình Dương (BDP – Binh Duong Polytechnic) đào tạo trung cấp chính quy, tuyển sinh lớp
           10 kết hợp học nghề và các chương trình bồi dưỡng, cập nhật kiến thức cho học viên.
         </p>
         <div className="about">
-          <div className="about-photos">
+          <div className="about-photos" data-stagger="zoom">
             <img src="/img/p03.jpg" alt="Cán bộ, giáo viên nhà trường trong một chương trình tư vấn hướng nghiệp" loading="lazy" />
             <img src="/img/p11.jpg" alt="Lớp học tại trường" loading="lazy" />
           </div>
-          <div className="about-body" id="vi-sao">
+          <div className="about-body" id="vi-sao" data-reveal="right">
             <h3>Vì sao chọn BDP?</h3>
-            <ul className="checks">
+            <ul className="checks" data-stagger="left">
               {WHY_BDP.map(([bold, rest]) => (
                 <li key={bold}><b>{bold}</b>{rest}</li>
               ))}
@@ -81,11 +81,11 @@ export function Programs() {
     <section className="section" id="dao-tao">
       <div className="container">
         <SectionTitle>Các chương trình đào tạo</SectionTitle>
-        <p className="section-desc">
+        <p className="section-desc" data-reveal="up">
           Nhà trường tuyển sinh Trung cấp chính quy cho học sinh tốt nghiệp THCS, THPT, Trung cấp, Cao đẳng, Đại học ngành
           khác; có cơ hội liên thông Cao đẳng, Đại học trên toàn quốc.
         </p>
-        <div className="programs" id="nganh">
+        <div className="programs" id="nganh" data-stagger="pop">
           {PROGRAMS.map((p) => (
             <article className="program" key={p.head}>
               <SmartLink className="program-head" to={p.to}>{p.head}</SmartLink>
@@ -107,20 +107,20 @@ export function NewsAndNotices() {
       <div className="container news-wrap">
         <div className="news-col">
           <SectionTitle left>Tin tức &amp; Sự kiện</SectionTitle>
-          <NewsCard item={NEWS_FEATURED} featured />
-          <div className="news-grid">
+          <div data-reveal="left"><NewsCard item={NEWS_FEATURED} featured /></div>
+          <div className="news-grid" data-stagger="up">
             {NEWS.map((n) => <NewsCard item={n} key={n.slug} />)}
           </div>
           <p className="section-more left"><SmartLink className="btn btn-outline" to="/tin-tuc">Xem tất cả tin tức</SmartLink></p>
         </div>
-        <aside className="notice-col" id="thong-bao">
+        <aside className="notice-col" id="thong-bao" data-reveal="right">
           <SectionTitle left>Thông báo</SectionTitle>
           <article className="notice notice-featured">
             <SmartLink to={NOTICE_FEATURED.to}><img src={NOTICE_FEATURED.img} alt={NOTICE_FEATURED.alt} loading="lazy" /></SmartLink>
             <div className="notice-meta"><span>Thông báo</span><span className="badge">Mới</span></div>
             <h3><SmartLink to={NOTICE_FEATURED.to}>{NOTICE_FEATURED.title}</SmartLink></h3>
           </article>
-          <ul className="notice-list">
+          <ul className="notice-list" data-stagger="right">
             {NOTICES.map((n) => (
               <li key={n.to}>
                 <span className="notice-meta"><span>Thông báo</span></span>
@@ -140,11 +140,11 @@ export function Gallery() {
     <section className="section" id="hoat-dong">
       <div className="container">
         <SectionTitle>Hình ảnh hoạt động của học sinh</SectionTitle>
-        <Slider className="gallery" autoplay={3000} label="Hình ảnh hoạt động của học sinh">
+        <div data-reveal="zoom"><Slider className="gallery" autoplay={3000} label="Hình ảnh hoạt động của học sinh">
           {GALLERY.map((g) => (
             <figure className="gal" key={g.src}><img src={g.src} alt={g.alt} loading="lazy" /></figure>
           ))}
-        </Slider>
+        </Slider></div>
       </div>
     </section>
   );

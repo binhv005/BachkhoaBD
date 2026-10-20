@@ -32,7 +32,7 @@ export default function Partners() {
 
   return (
     <section className="section partners-section" id="doi-tac">
-      <div className="container">
+      <div className="container" data-reveal="up">
         <h2 className="section-title section-title-bar">
           <span className="title-row"><span className="title-ico" aria-hidden="true" />Các đơn vị đồng hành cùng BDP</span>
         </h2>
